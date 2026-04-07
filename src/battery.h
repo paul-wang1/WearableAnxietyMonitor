@@ -8,6 +8,8 @@ This file contains the function declarations for the battery class.
 class Battery {
     public:
         Battery(int pin);
+        int readValue();
+        float calcVoltage();
 
     private:
         int ADC_pin;
