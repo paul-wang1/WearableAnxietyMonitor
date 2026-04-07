@@ -8,6 +8,6 @@ void setup(){
 }
 
 void loop(){
-  Serial.print(groveSensor.calcRes(2400));
+  Serial.print(groveSensor.calcConductance(2400));
   Serial.println();
 }

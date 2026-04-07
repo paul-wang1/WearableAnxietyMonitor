@@ -16,6 +16,7 @@ Grove::Grove(int pin) {
 /*
 Purpose: Converts the analog value from the grove sensor to digital and
 returns it.
+Output: The digital value from the grove sensor.
 */
 int Grove::readValue() {
     return analogRead(ADC_pin);
@@ -24,6 +25,7 @@ int Grove::readValue() {
 /*
 Purpose: Takes 10 readings from the grove sensor with a delay between each
 reading, averages them, and returns the average value.
+Output: The average value from the grove sensor after taking 10 readings.
 */
 int Grove::readAvgVal() {
     long sum = 0;
@@ -38,11 +40,22 @@ int Grove::readAvgVal() {
 Input: The calibrated value for the grove sensor when no one is wearing it.
 Purpose: Calculates the resistance of the skin based on the data from
 the grove sensor.
+Output: The calculated resistance of the skin.
 */
 int Grove::calcRes(int caliVal) {
     int avgVal = readAvgVal();
     return (4096 + 2 * avgVal) * 10000 / (caliVal - avgVal);
 }
 
+
+/*
+Purpose: Calculates the conductance of the skin based on the calculated
+resistance.
+Output: The calculated conductance of the skin in microSiemens.
+*/
+float Grove::calcConductance(int caliVal) {
+    int res = calcRes(caliVal);
+    return 1000000.0 / res;
+}
 
 

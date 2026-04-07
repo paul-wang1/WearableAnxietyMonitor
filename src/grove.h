@@ -15,6 +15,7 @@ class Grove {
     int readValue();
     int readAvgVal();
     int calcRes(int caliVal);
+    float calcConductance(int caliVal);
 
   private:
     int ADC_pin;
